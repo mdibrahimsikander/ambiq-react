@@ -1,0 +1,46 @@
+.hero_area {
+  position: relative;
+}
+
+.sub_page .hero_area {
+  height: auto;
+}
+
+.about_section {
+  margin-top: 50px; /* Adjust this value as needed */
+}
+
+.about_section .row {
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.about_section .img-box img {
+  max-width: 100%;
+}
+.heading_container h2 {
+    position: relative;
+    font-weight: bold;
+}
+.heading_container h2 span {
+    color: #19717d;
+}
+.about_section .detail-box p {
+  color: #999;
+  margin-top: 15px;
+}
+
+.about_section .detail-box button {
+  display: inline-block;
+  padding: 10px 45px;
+  background-color: #252525;
+  color: #ffffff;
+  border-radius: 5px;
+  margin-top: 15px;
+  text-decoration: none;
+}
+
+.about_section .detail-box button:hover {
+  background-color: #0c0c0c;
+}
