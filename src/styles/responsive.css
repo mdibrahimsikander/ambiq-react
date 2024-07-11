@@ -39,21 +39,20 @@
     align-items: center;
     text-align: center;
   }
-  
+
   .feature_section .img-box {
     display: flex;
     justify-content: center;
   }
-  
+
   .feature_section .detail-box {
-    margin-top: 15px; 
+    margin-top: 15px;
   }
-  
+
   .img-box img {
     max-width: 100%;
     height: auto;
   }
-  
 
   .client_section .box {
     margin: 15px;
@@ -96,11 +95,38 @@
     gap: 5px;
   }
 
-  .team_section .team_carousel .owl-nav button {
-    position: unset;
-    transform: none;
+  /* .owl-prev, .owl-next {
+    top: auto;
+    bottom: 2px;
+    left: 100%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 500px;
+    line-height: 500px;
+    font-size: 14px;
   }
 
+  .owl-prev {
+    left: calc(50% - 25px);
+  }
+
+  .owl-next {
+    left: calc(50% + 25px);
+  } */
+  .owl-prev,
+  .owl-next {
+    bottom: 10px;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    font-size: 14px;
+  }
+  .slick-prev {
+    left: 0%;
+  }
+  .owl-next {
+    left: 0%;
+  }
   .contact_section .form_container {
     margin-right: 0;
     margin-bottom: 25px;
@@ -219,7 +245,7 @@
     margin-top: 0px;
   }
 
-  team_section .box .detail-box .pad {
+  .team_section .box .detail-box .pad {
     padding-bottom: 35px;
   }
 
@@ -241,7 +267,7 @@
     margin-top: 0px;
   }
 
-  team_section .box .detail-box .pad {
+  .team_section .box .detail-box .pad {
     padding-bottom: 0px;
   }
 
