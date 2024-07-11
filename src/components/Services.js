@@ -87,7 +87,7 @@ function SamplePrevArrow(props) {
         <button
         type="button"
         role="presentation"
-        className="owl-prev "
+        className="owl-prev"
         style={{ ...style, display: "block" }}
         onClick={onClick}
         >

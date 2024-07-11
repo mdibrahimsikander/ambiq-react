@@ -7,6 +7,8 @@ import About from "./components/About";
 import KeyFeatures from "./components/KeyFeatures";
 import Services from "./components/Services";
 import servicesData from './Data/servicesData';
+import Faq from "./components/Faq";
+import faqData from "./Data/faqData";
 import Footer from "./components/Footer";
 
 
@@ -18,6 +20,7 @@ function App() {
       <About />
       <KeyFeatures />
       <Services services={servicesData}/>
+      <Faq faqs={faqData}/>
       <Footer />
     </>
   );
