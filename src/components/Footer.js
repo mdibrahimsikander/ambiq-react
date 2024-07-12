@@ -1,66 +1,86 @@
-import React from "react";
+import React, { useState } from "react";
 import AmbiQLogo from "../assets/AmbiQ-Logo.png";
 import "../styles/Footer.css";
 
 const Footer = () => {
-  document.addEventListener("DOMContentLoaded", function () {
-    const scriptURL =
-      "https://script.google.com/macros/s/AKfycbyAkgf29LAnzg_qvBiy1GOxV6V8fi2q-vjK52K0_g3KtVy5XIvi8LWlMTgof6zpTSG9/exec";
-    const form = document.forms["google-sheet"];
-    const alertContainer = document.getElementById("alert-container");
+  const [subscriber, setSubscriber] = useState({ email: "" });
 
-    form.addEventListener("submit", (e) => {
-      e.preventDefault();
-      fetch(scriptURL, {
+  const postUserEmail = (event) => {
+    const { name, value } = event.target;
+    setSubscriber({ ...subscriber, [name]: value });
+  };
+
+  const submitData = async (event) => {
+    event.preventDefault();
+    const email = { email: subscriber.email };
+
+    try {
+      // Fetch existing emails from the database
+      const existingEmailsResponse = await fetch('https://ambiq-f1d2a-default-rtdb.firebaseio.com/subscriberRecords.json');
+      const existingEmailsData = await existingEmailsResponse.json();
+
+      // Check if the email is already in the database
+      const existingEmails = existingEmailsData ? Object.values(existingEmailsData).map(record => record.email) : [];
+      if (existingEmails.includes(subscriber.email)) {
+        setSubscriber({ email: "" });
+        showAlert('This email is already subscribed to the newsletter.', 'alert-warning');
+        return;
+      }
+
+      // If the email is not in the database, add it
+      const res = await fetch('https://ambiq-f1d2a-default-rtdb.firebaseio.com/subscriberRecords.json', {
         method: "POST",
-        body: new FormData(form),
-      })
-        .then((response) => response.json())
-        .then((result) => {
-          console.log("Success!", result);
-          showAlert(
-            "Thank you for subscribing to our newsletter!",
-            "alert-secondary"
-          );
-        })
-        .catch((error) => {
-          console.error("Error!", error.message);
-          showAlert("An error occurred. Please try again.", "alert-danger");
-        });
-      form.reset();
-    });
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(email),
+      });
 
-    function showAlert(message, alertClass) {
-      const alertDiv = document.createElement("div");
-      alertDiv.className = `alert ${alertClass}`;
-      alertDiv.role = "alert";
-      alertDiv.innerText = message;
-
-      alertContainer.appendChild(alertDiv);
-
-      // Remove the alert after 5 seconds
-      setTimeout(() => {
-        alertDiv.remove();
-      }, 4000);
+      if (res.ok) {
+        console.log('Success!', res);
+        setSubscriber({ email: "" });
+        showAlert('Thank you for subscribing to our newsletter!', 'alert-success');
+      } else {
+        throw new Error('Network response was not ok.');
+      }
+    } catch (error) {
+      console.error('Error!', error);
+      showAlert('An error occurred. Please try again.', 'alert-danger');
     }
-  });
-  
+  };
+
+  const showAlert = (message, alertClass) => {
+    const alertContainer = document.getElementById('alert-container');
+    const alertDiv = document.createElement('div');
+    alertDiv.className = `alert ${alertClass}`;
+    alertDiv.role = 'alert';
+    alertDiv.innerText = message;
+
+    alertContainer.appendChild(alertDiv);
+
+    setTimeout(() => {
+      alertDiv.remove();
+    }, 4000);
+  };
+
   return (
     <>
-      <section className="info_section ">
+      <section className="info_section">
         <div className="container">
           <div className="info_top">
             <div className="info_logo">
-              <a href>
-                <img src={AmbiQLogo} alt="" />
+              <a href="#">
+                <img src={AmbiQLogo} alt="AmbiQ Logo" />
               </a>
             </div>
             <div className="info_form">
-              <form method="POST" name="google-sheet">
+              <form method="POST" name="google-sheet" onSubmit={submitData}>
                 <input
                   type="email"
-                  name="Emails"
+                  name="email"
                   placeholder="Your email"
+                  value={subscriber.email}
+                  onChange={postUserEmail}
                   required
                 />
                 <button type="submit">Subscribe</button>
@@ -94,10 +114,10 @@ const Footer = () => {
                   >
                     <i className="fa fa-facebook" aria-hidden="true" />
                   </a>
-                  <a href target="_blank">
+                  <a href="#" target="_blank">
                     <i className="fa fa-twitter" aria-hidden="true" />
                   </a>
-                  <a href target="_blank">
+                  <a href="#" target="_blank">
                     <i className="fa fa-linkedin" aria-hidden="true" />
                   </a>
                   <a
@@ -160,4 +180,5 @@ const Footer = () => {
     </>
   );
 };
+
 export default Footer;
