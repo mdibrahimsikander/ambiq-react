@@ -4,8 +4,7 @@
   }
 }
 
-@media (max-width: 1120px) {
-}
+@media (max-width: 1120px) {}
 
 @media (max-width: 992px) {
   .hero_area {
@@ -33,47 +32,47 @@
   .slider_section {
     padding: 75px 0 125px 0;
   }
+
   .feature_section .box {
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
   }
-  
+
   .feature_section .img-box {
     display: flex;
     justify-content: center;
   }
-  
+
   .feature_section .detail-box {
-    margin-top: 15px; 
+    margin-top: 15px;
   }
-  
+
   .img-box img {
     max-width: 100%;
     height: auto;
   }
-  
 
-  .client_section .box {
+  .faq_section .box {
     margin: 15px;
   }
 
-  .client_section .carousel_btn-box {
+  .faq_section .carousel_btn-box {
     display: flex;
     justify-content: center;
     margin-top: 45px;
   }
 
-  .client_section .carousel-control-prev,
-  .client_section .carousel-control-next {
+  .faq_section .carousel-control-prev,
+  .faq_section .carousel-control-next {
     position: unset;
     margin: 0 2.5px;
-    width: 45px;
-    height: 45px;
+    width: 45px !important;
+    height: 45px !important;
   }
 
-  .info_section .info_main_row > div {
+  .info_section .info_main_row>div {
     margin-bottom: 25px;
   }
 }
@@ -96,9 +95,18 @@
     gap: 5px;
   }
 
-  .team_section .team_carousel .owl-nav button {
-    position: unset;
-    transform: none;
+  .owl-prev, .owl-next {
+    position: unset !important;
+    /* transform: translateX(1000%) !important; */
+  }
+  .owl-prev{
+    transform: translateX(550%) !important;
+  }
+  .owl-prev{
+    transform: translateY(950%) !important;
+  }
+  .owl-next{
+    transform: translateX(500%) !important;
   }
 
   .contact_section .form_container {
@@ -106,14 +114,14 @@
     margin-bottom: 25px;
   }
 
-  .info_section .info_main_row > div {
+  .info_section .info_main_row>div {
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
   }
 
-  .info_section .info_main_row > div:nth-last-child(1) {
+  .info_section .info_main_row>div:nth-last-child(1) {
     margin-bottom: 0;
   }
 
@@ -172,11 +180,9 @@
   }
 }
 
-@media (max-width: 480px) {
-}
+@media (max-width: 480px) {}
 
-@media (max-width: 420px) {
-}
+@media (max-width: 420px) {}
 
 @media (max-width: 376px) {
   .slider_section .detail_box h1 {
@@ -219,7 +225,7 @@
     margin-top: 0px;
   }
 
-  team_section .box .detail-box .pad {
+  .team_section .box .detail-box .pad {
     padding-bottom: 35px;
   }
 
@@ -241,7 +247,7 @@
     margin-top: 0px;
   }
 
-  team_section .box .detail-box .pad {
+  .team_section .box .detail-box .pad {
     padding-bottom: 0px;
   }
 
