@@ -4,6 +4,7 @@ import "../styles/About.css";
 import "../styles/responsive.css";
 
 const About = () => {
+
     const [readMore,setReadMore]=useState(false);
 
     const fullText=`AmbiQ is a revolutionary online ambulance booking application
