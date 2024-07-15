@@ -1,5 +1,5 @@
-import "./App.css";
 import React from "react";
+import {Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
 import Slider from "./components/Slider";
 import slideData from './Data/slideData';
@@ -9,18 +9,33 @@ import Services from "./components/Services";
 import servicesData from './Data/servicesData';
 import Faq from "./components/Faq";
 import faqData from "./Data/faqData";
+import Contact from "./components/Contact";
+import Careers from "./components/Careers";
 import Footer from "./components/Footer";
-
+import "./App.css";
 
 function App() {
   return (
     <>
       <Header />
-      <Slider slides={slideData} />
-      <About />
-      <KeyFeatures />
-      <Services services={servicesData}/>
-      <Faq faqs={faqData}/>
+      <Routes>
+        <Route path="/" element={
+          <>
+            <Slider slides={slideData} />
+            <About />
+            <KeyFeatures />
+            <Services services={servicesData} />
+            <Faq faqs={faqData} />
+            <Contact />
+          </>
+        } />
+        <Route path="/about" element={<About />} />
+        <Route path="/keyfeatures" element={<KeyFeatures />} />
+        <Route path="/services" element={<Services services={servicesData} />} />
+        <Route path="/faq" element={<Faq faqs={faqData} />} />
+        <Route path="/Careers" element={<Careers />} />
+        <Route path="/contact" element={<Contact />} />
+      </Routes>
       <Footer />
     </>
   );
