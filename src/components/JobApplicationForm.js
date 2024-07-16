@@ -1,87 +1,154 @@
-import React from 'react';
-import "../styles/JobApplicationForm.css"
-// import active from "../Data/activeJobsData"
+import React, { useState } from 'react';
+import { ref, set, getDatabase } from 'firebase/database';
+import { ref as storageRef, uploadBytesResumable, getDownloadURL, getStorage } from 'firebase/storage';
+import "../styles/JobApplicationForm.css";
 
-const JobApplicationForm = ({job}) => {
+const JobApplicationForm = ({ job }) => {
+    const [formData, setFormData] = useState({
+        name: '',
+        email: '',
+        phone: '',
+        address: '',
+        jobRole: '',
+        resume: null,
+        message: ''
+    });
+    const [isSubmitted, setIsSubmitted] = useState(false); // State for popup visibility
 
-    
+    const handleChange = (e) => {
+        const { name, value, files } = e.target;
+        setFormData({
+            ...formData,
+            [name]: files ? files[0] : value
+        });
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const { name, email, phone, address, jobRole, resume, message } = formData;
+
+        const db = getDatabase();
+        const storage = getStorage();
+
+        try {
+            // Upload resume to Firebase Storage
+            const storageReference = storageRef(storage, `resumes/${resume.name}`);
+            const uploadTask = uploadBytesResumable(storageReference, resume);
+
+            uploadTask.on(
+                'state_changed',
+                (snapshot) => {
+                    // Handle progress
+                },
+                (error) => {
+                    console.error('Upload error:', error);
+                },
+                async () => {
+                    const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
+
+                    // Save form data to Firebase Database
+                    const newApplicationRef = ref(db, 'jobApplications/' + job.title.replace(/\s+/g, '_'));
+                    await set(newApplicationRef, {
+                        name,
+                        email,
+                        phone,
+                        address,
+                        jobRole,
+                        resumeURL: downloadURL,
+                        message
+                    });
+
+                    // Show success popup
+                    setIsSubmitted(true);
+
+                    // Clear form fields
+                    setFormData({
+                        name: '',
+                        email: '',
+                        phone: '',
+                        address: '',
+                        jobRole: '',
+                        resume: null,
+                        message: ''
+                    });
+
+                    console.log('Application submitted successfully!');
+                }
+            );
+        } catch (error) {
+            console.error('Error submitting application:', error);
+        }
+    };
 
     return (
-
         <section className="jobs_section layout_padding bg">
             <div className="container">
                 <div className="row">
                     <div className="col-md-6">
                         <div className="detail-box">
                             <div className="heading_container">
-                                <h2>
-                                    DET<span>AILS</span>
-                                </h2>
+                                <h2>DET<span>AILS</span></h2>
                             </div>
-                            <p>
-                                {job.JobDetails}
-
-                            </p>
+                            <p>{job.JobDetails}</p>
                             <h6>Job Responsibilities:</h6>
-
-                            <div dangerouslySetInnerHTML={{ __html: job.JobResponsibilities}}></div>
-
+                            <div dangerouslySetInnerHTML={{ __html: job.JobResponsibilities }}></div>
                             <h6>Job Requirements</h6>
-
-                            <div dangerouslySetInnerHTML={{ __html:  job.JobRequirements  }}></div>
-
-
+                            <div dangerouslySetInnerHTML={{ __html: job.JobRequirements }}></div>
                         </div>
                     </div>
-
-                    <div className="col-md-6 ">
-
+                    <div className="col-md-6">
                         <div className="heading_container">
-                            <h2>
-                                JOB <span>APPLICATION FORM</span>
-                            </h2>
+                            <h2>JOB <span>APPLICATION FORM</span></h2>
                         </div>
-
                         <div className="contain">
-                            <form>
+                            <form onSubmit={handleSubmit}>
                                 <div className="form-group">
-                                    <label for="name">Name:</label>
-                                    <input type="text" id="name" name="name" required />
+                                    <label htmlFor="name">Name:</label>
+                                    <input type="text" id="name" name="name" value={formData.name} onChange={handleChange} required />
                                 </div>
                                 <div className="form-group">
-                                    <label for="email">Email:</label>
-                                    <input type="email" id="email" name="email" required />
+                                    <label htmlFor="email">Email:</label>
+                                    <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} required />
                                 </div>
                                 <div className="form-group">
-                                    <label for="phone">Phone:</label>
-                                    <input type="tel" id="phone" name="phone" required />
+                                    <label htmlFor="phone">Phone:</label>
+                                    <input type="tel" id="phone" name="phone" value={formData.phone} onChange={handleChange} required />
                                 </div>
                                 <div className="form-group">
-                                    <label for="address">Address:</label>
-                                    <input type="text" id="address" name="address" required />
+                                    <label htmlFor="address">Address:</label>
+                                    <input type="text" id="address" name="address" value={formData.address} onChange={handleChange} required />
                                 </div>
                                 <div className="form-group">
-                                    <label for="Job Role">Job Role:</label>
-                                    <input type="text" id="job_role" name="job_role" required />
+                                    <label htmlFor="jobRole">Job Role:</label>
+                                    <input type="text" id="jobRole" name="jobRole" value={formData.jobRole} onChange={handleChange} required />
                                 </div>
                                 <div className="form-group">
-                                    <label for="resume">Resume:</label>
-                                    <input type="file" id="resume" name="resume" accept=".pdf" required />
+                                    <label htmlFor="resume">Resume:</label>
+                                    <input type="file" id="resume" name="resume" accept=".pdf" onChange={handleChange} required />
                                 </div>
                                 <div className="form-group">
-                                    <label for="message">Message:</label>
-                                    <textarea id="message" name="message" placeholder="Write your Message here..."
-                                        required></textarea>
+                                    <label htmlFor="message">Message:</label>
+                                    <textarea id="message" name="message" value={formData.message} onChange={handleChange} required></textarea>
                                 </div>
-                                <button type="button" id="submit">Submit Application</button>
-
+                                <button type="submit">Submit Application</button>
                             </form>
                         </div>
                     </div>
                 </div>
             </div>
+
+            {/* Popup for successful submission */}
+            {isSubmitted && (
+                <div className="popup">
+                    <div className="popup-content">
+                        <h3>Success!</h3>
+                        <p>Your application has been successfully submitted.</p>
+                        <button onClick={() => setIsSubmitted(false)}>Close</button>
+                    </div>
+                </div>
+            )}
         </section>
     );
-}
+};
 
 export default JobApplicationForm;
