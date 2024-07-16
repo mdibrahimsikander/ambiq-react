@@ -5,6 +5,7 @@ import dots from "../assets/dots.png";
 import prevIcon from "../assets/prev.png";
 import nextIcon from "../assets/next.png";
 import "../styles/Slider.css";
+import { Link } from "react-router-dom";
 
 const Slider = ({ slides }) => (
   <div className="hero_area">
@@ -56,7 +57,7 @@ const Slider = ({ slides }) => (
                         </>
                       )}
 
-                      <a href="contact.html">Contact Us</a>
+                      <Link to="/contact">Contact Us</Link>
                     </div>
                   </div>
                   <div className="col-md-6">

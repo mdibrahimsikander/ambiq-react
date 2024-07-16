@@ -33,7 +33,7 @@ function App() {
         <Route path="/keyfeatures" element={<KeyFeatures />} />
         <Route path="/services" element={<Services services={servicesData} />} />
         <Route path="/faq" element={<Faq faqs={faqData} />} />
-        <Route path="/Careers" element={<Careers />} />
+        <Route path="/careers" element={<Careers />} />
         <Route path="/contact" element={<Contact />} />
       </Routes>
       <Footer />
