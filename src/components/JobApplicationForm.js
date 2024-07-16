@@ -14,6 +14,8 @@ const JobApplicationForm = ({ job }) => {
         message: ''
     });
     const [isSubmitted, setIsSubmitted] = useState(false); // State for popup visibility
+    const [isLoading, setIsLoading] = useState(false); // State for loading spinner
+    const [error, setError] = useState(null); // State for error message
 
     const handleChange = (e) => {
         const { name, value, files } = e.target;
@@ -25,6 +27,9 @@ const JobApplicationForm = ({ job }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setIsLoading(true); // Show spinner
+        setError(null); // Reset error state
+
         const { name, email, phone, address, jobRole, resume, message } = formData;
 
         const db = getDatabase();
@@ -42,6 +47,9 @@ const JobApplicationForm = ({ job }) => {
                 },
                 (error) => {
                     console.error('Upload error:', error);
+                    setError('Error uploading resume. Please try again.');
+                    setIsLoading(false); // Hide spinner on error
+                    setIsSubmitted(true); // Show popup
                 },
                 async () => {
                     const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
@@ -60,6 +68,7 @@ const JobApplicationForm = ({ job }) => {
 
                     // Show success popup
                     setIsSubmitted(true);
+                    setIsLoading(false); // Hide spinner
 
                     // Clear form fields
                     setFormData({
@@ -77,6 +86,9 @@ const JobApplicationForm = ({ job }) => {
             );
         } catch (error) {
             console.error('Error submitting application:', error);
+            setError('Error submitting application. Please try again.');
+            setIsLoading(false); // Hide spinner on error
+            setIsSubmitted(true); // Show popup
         }
     };
 
@@ -130,20 +142,23 @@ const JobApplicationForm = ({ job }) => {
                                     <label htmlFor="message">Message:</label>
                                     <textarea id="message" name="message" value={formData.message} onChange={handleChange} required></textarea>
                                 </div>
-                                <button type="submit">Submit Application</button>
+                                <button type="submit" disabled={isLoading}>
+                                    Submit Application
+                                </button>
+                                {isLoading && <div className="spinner"></div>}
                             </form>
                         </div>
                     </div>
                 </div>
             </div>
 
-            {/* Popup for successful submission */}
+            {/* Popup for submission status */}
             {isSubmitted && (
                 <div className="popup">
                     <div className="popup-content">
-                        <h3>Success!</h3>
-                        <p>Your application has been successfully submitted.</p>
-                        <button onClick={() => setIsSubmitted(false)}>Close</button>
+                        <h3>{error ? 'Submission Error' : 'Success!'}</h3>
+                        <p>{error ? error : 'Your application has been successfully submitted.'}</p>
+                        <button onClick={() => { setIsSubmitted(false); setError(null); }}>Close</button>
                     </div>
                 </div>
             )}
