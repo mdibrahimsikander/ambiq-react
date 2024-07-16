@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "../styles/Contact.css";
 import contactImg from '../assets/contact-img.png';
 import { database, ref, set, get, child } from "../Firebase/Firebase";
-// import "../styles/responsive.css";
+import "../styles/responsive.css";
 
 const Contact = () => {
 
@@ -28,29 +28,13 @@ const Contact = () => {
   const sendMail = () => {
     if (formData.name && formData.email && formData.phone && formData.message) {
 
-      // const newMessageRef = database.ref('messages').push();
-
-      // newMessageRef.set(formData).then(()=>{
-      //   setMessageStatus({ success: true, empty: false });
-      //   setFormData({
-      //     name: '',
-      //     email: '',
-      //     phone: '',
-      //     message: '',
-      //   });
-      // });
-
-      // if(database() != NULL){}
-
-      // console.log(database);
-
       if (database !== null) {
 
         const db = database;
 
         const dbRef = ref(db);
 
-        get(child(dbRef, `users/${formData.phone}`)).then((snapshot) => {
+        get(child(dbRef, `contactedUsers/${formData.phone}`)).then((snapshot) => {
 
           if (snapshot.exists()) {
 
@@ -62,7 +46,7 @@ const Contact = () => {
 
           } else {
 
-            set(ref(db, 'users/' + formData.phone), {
+            set(ref(db, 'contactedUsers/' + formData.phone), {
               name: formData.name,
               email: formData.email,
               phone: formData.phone,
@@ -146,7 +130,7 @@ const Contact = () => {
                 onChange={handleInputChange}
                 required
               />
-              <input
+              <textarea
                 type="text"
                 className="message-box"
                 placeholder="Your Message"
@@ -166,7 +150,7 @@ const Contact = () => {
                   Please try again after Sometime.
                 </div>
                 <div className={`registered ${messageStatus.registered ? '' : 'hidden'}`} id="registered">
-                  Already Registered.
+                  We have received a message from this number, please try with a different number.
                 </div>
               </div>
               <div className="btn_box btnn">

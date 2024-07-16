@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import AmbiQLogo from "../assets/AmbiQ-Logo.png";
 import "../styles/Footer.css";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   const [subscriber, setSubscriber] = useState({ email: "" });
@@ -140,15 +141,15 @@ const Footer = () => {
                 <div className="info_links">
                   <h5>Useful link</h5>
                   <div className="info_links_menu">
-                    <a className="active" href="index.html">
+                    <Link className="active" to="/">
                       Home
-                    </a>
-                    <a href="about.html">About Us</a>
-                    <a href="keyfeature.html">Key Features</a>
-                    <a href="ourservices.html">Services</a>
-                    <a href="faq.html">FAQ</a>
-                    <a href="./careers/careers.html">Careers</a>
-                    <a href="contact.html">Contact us</a>
+                    </Link>
+                    <Link to="/about">About Us</Link>
+                    <Link to="/keyfeatures">Key Features</Link>
+                    <Link to="/services">Services</Link>
+                    <Link to="/faq">FAQ</Link>
+                    <Link to="/careers">Careers</Link>
+                    <Link to="/contact">Contact us</Link>
                   </div>
                 </div>
               </div>
@@ -172,8 +173,7 @@ const Footer = () => {
       <footer className="footer_section">
         <div className="container">
           <p>
-            © <span id="displayYear" /> All Rights Reserved By
-            <a href="https://ambiq.in/">AmbiQ Health Services Pvt. Ltd.</a>
+            © <span id="displayYear" /> All Rights Reserved By <a href="https://ambiq.in/">AmbiQ Health Services Pvt. Ltd.</a>
           </p>
         </div>
       </footer>

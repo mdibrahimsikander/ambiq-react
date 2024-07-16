@@ -25,11 +25,28 @@
     color: #101010;
 }
 
+.contact_section .form_container textarea{
+    width: 100%;
+    border: 1px solid #19717D;
+    height: 50px;
+    margin-bottom: 25px;
+    padding-left: 15px;
+    background-color: transparent;
+    outline: none;
+    color: #101010;
+}
+
+
+
 .contact_section .form_container input::-webkit-input-placeholder {
     color: #19717D;
 }
 
-.contact_section .form_container input:-ms-input-placeholder {
+.contact_section .form_container textarea::-webkit-input-placeholder {
+    color: #19717D;
+}
+
+.contact_section .form_container textarea:-ms-input-placeholder {
     color: #19717D;
 }
 
@@ -41,9 +58,15 @@
     color: #19717D;
 }
 
-.contact_section .form_container input.message-box {
+.contact_section .form_container textarea::placeholder {
+    color: #19717D;
+}
+
+.contact_section .form_container textarea.message-box {
     height: 120px;
 }
+
+
 
 .contact_section .form_container button {
     border: none;
@@ -171,7 +194,7 @@
     .contact_section .form_container .message .success,
     .contact_section .form_container .message .empty,
     .contact_section .form_container .message .connection,
-    .contact_section .form_container .message .registered {
+    .contact_section .form_container .message .registered{
         font-size: 16px;
     }
 }
