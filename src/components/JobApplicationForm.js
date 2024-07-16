@@ -1,10 +1,16 @@
 import React from 'react';
 import "../styles/JobApplicationForm.css"
-// import active from "../Data/activeJobsData"
+
+
+
+
 
 const JobApplicationForm = ({job}) => {
 
+   
     
+
+
 
     return (
 
@@ -80,6 +86,7 @@ const JobApplicationForm = ({job}) => {
                     </div>
                 </div>
             </div>
+            
         </section>
     );
 }
