@@ -41,7 +41,6 @@ function App() {
             <Services services={servicesData} />
             <Faq faqs={faqData} />
             <Contact />
-
           </>
         } />
         <Route path="/about" element={<About />} />

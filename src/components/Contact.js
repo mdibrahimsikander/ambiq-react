@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState,useRef } from "react";
 import "../styles/Contact.css";
 import contactImg from '../assets/contact-img.png';
 import { database, ref, set, get, child } from "../Firebase/Firebase";
+import emailjs from '@emailjs/browser';
 import "../styles/responsive.css";
 
 const Contact = () => {
@@ -96,6 +97,24 @@ const Contact = () => {
     }
   };
 
+  const form = useRef();
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    emailjs
+      .sendForm('service_e4zj7bn', 'template_e91nkg7', form.current, {
+        publicKey: '9tne6huH6b2t2Jula',
+      })
+      .then(
+        () => {
+          console.log('SUCCESS!');
+        },
+        (error) => {
+          console.log('FAILED...', error.text);
+        },
+      );
+  };
 
   return (
     <section className="contact_section layout_padding-bottom">
@@ -105,11 +124,12 @@ const Contact = () => {
         </div>
         <div className="row">
           <div className="col-md-7">
-            <div className="form_container">
+            <form className="form_container" ref={form} onSubmit={sendEmail}>
               <input
                 type="text"
                 placeholder="Your Name"
                 id="name"
+                name="name"
                 value={formData.name}
                 onChange={handleInputChange}
                 required
@@ -118,6 +138,7 @@ const Contact = () => {
                 type="email"
                 placeholder="Your Email"
                 id="email"
+                name="email"
                 value={formData.email}
                 onChange={handleInputChange}
                 required
@@ -126,6 +147,7 @@ const Contact = () => {
                 type="number"
                 placeholder="Your Number"
                 id="phone"
+                name="phone"
                 value={formData.phone}
                 onChange={handleInputChange}
                 required
@@ -135,6 +157,7 @@ const Contact = () => {
                 className="message-box"
                 placeholder="Your Message"
                 id="message"
+                name="message"
                 value={formData.message}
                 onChange={handleInputChange}
                 required
@@ -154,9 +177,9 @@ const Contact = () => {
                 </div>
               </div>
               <div className="btn_box btnn">
-                <button onClick={sendMail}>SEND</button>
+                <button type="submit" value="Send" onClick={sendMail}>SEND</button>
               </div>
-            </div>
+            </form>
           </div>
           <div className="col-md-5">
             <div className="img-box">
@@ -170,5 +193,4 @@ const Contact = () => {
 };
 
 export default Contact;
-
 
