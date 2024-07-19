@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { ref, set, getDatabase } from 'firebase/database';
 import { ref as storageRef, uploadBytesResumable, getDownloadURL, getStorage } from 'firebase/storage';
 import "../styles/JobApplicationForm.css";
+import emailjs from '@emailjs/browser';
+
 
 const JobApplicationForm = ({ job }) => {
     const [formData, setFormData] = useState({
@@ -13,6 +15,7 @@ const JobApplicationForm = ({ job }) => {
         resume: null,
         message: ''
     });
+
     const [isSubmitted, setIsSubmitted] = useState(false); // State for popup visibility
     const [isLoading, setIsLoading] = useState(false); // State for loading spinner
     const [error, setError] = useState(null); // State for error message
@@ -70,6 +73,32 @@ const JobApplicationForm = ({ job }) => {
                     setIsSubmitted(true);
                     setIsLoading(false); // Hide spinner
 
+
+                    const templateParams = {
+                        name: formData.name,
+                        email: formData.email,
+                        phone: formData.phone,
+                        address: formData.address,
+                        jobRole: formData.jobRole,
+                        message: formData.message,
+                        resume:downloadURL,
+                    };
+
+
+                   emailjs
+                        .sendForm("service_e4zj7bn", "template_e91nkg7", templateParams, {
+                            publicKey: "9tne6huH6b2t2Jula",
+                        })
+                        .then(
+                            () => {
+                                console.log('SUCCESS!');
+                            },
+                            (error) => {
+                                console.log('FAILED...', error.text);
+                            },
+                        );
+
+
                     // Clear form fields
                     setFormData({
                         name: '',
@@ -81,7 +110,9 @@ const JobApplicationForm = ({ job }) => {
                         message: ''
                     });
 
-                    console.log('Application submitted successfully!');
+
+
+                    // console.log('Application submitted successfully!');
                 }
             );
         } catch (error) {
@@ -99,16 +130,16 @@ const JobApplicationForm = ({ job }) => {
                     <div className="col-md-6">
                         <div className="detail-box">
                             <div className="heading_container">
-                                <h2>DET<span>AILS</span></h2>
+                                <h2 className="padding">DET<span>AILS</span></h2>
                             </div>
                             <p>{job.JobDetails}</p>
                             <h6>Job Responsibilities:</h6>
                             <div dangerouslySetInnerHTML={{ __html: job.JobResponsibilities }}></div>
                             <h6>Job Requirements</h6>
                             <div dangerouslySetInnerHTML={{ __html: job.JobRequirements }}></div>
-                        </div>
+                        </div> 
                     </div>
-                    <div className="col-md-6">
+                    <div className="col-md-6 up">
                         <div className="heading_container">
                             <h2>JOB <span>APPLICATION FORM</span></h2>
                         </div>

@@ -127,6 +127,32 @@ Button:hover {
   background-color: #0056b3;
 }
 
+@media screen and (max-width: 990px) {
+  .jobs_section .container .up {
+    margin-top: -30px;
+  }
+  .jobs_section .container .heading_container .padding {
+    position: relative;
+    top: -20px;
+  }
+}
+
+@media screen and (max-width: 769px) {
+  .jobs_section .container .up {
+    padding-top: 30px;
+
+  }
+
+  .jobs_section .container .up > div {
+    padding-bottom: 20px;
+    
+  }
+  .jobs_section .container .heading_container .padding {
+    position: unset;
+    
+  }
+}
+
 
 @media screen and (max-width: 600px) {
   .container {

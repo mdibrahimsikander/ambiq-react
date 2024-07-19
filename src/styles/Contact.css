@@ -86,15 +86,16 @@
 
 /* css for submit successfull message  */
 .contact_section .form_container .btnn {
-    margin-top: 60px;
+    margin-top: 70px;
 }
 
 .contact_section .form_container .message {
     width: 100%;
     position: relative;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     display: flex;
     justify-content: center;
+    text-align: center; /* Center the text */
 }
 
 .contact_section .form_container .message .success,
@@ -102,10 +103,12 @@
 .contact_section .form_container .message .connection,
 .contact_section .form_container .message .registered {
     font-size: 20px;
-    position: absolute;
+    position: relative;
     transition: .3s;
     animation: buttons .3s linear;
-    padding-bottom: 10px;
+    padding: 10px;
+    word-wrap: break-word; /* Ensure words wrap within the container */
+    max-width: 100%; /* Ensure it doesn't exceed the container width */
 }
 
 .contact_section .form_container .message .success {
@@ -166,6 +169,10 @@
 
     .contact_section .form_container .btnn {
         margin-top: 30px;
+    }
+
+    .contact_section .form_container .message div {
+        font-size: 18px;
     }
 }
 

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "../styles/Contact.css";
 import contactImg from '../assets/contact-img.png';
-import { database, ref, set, get, child } from "../Firebase/Firebase";
+import { database, ref, set, get, child,update } from "../Firebase/Firebase";
 import "../styles/responsive.css";
 
 const Contact = () => {
@@ -17,7 +17,7 @@ const Contact = () => {
     success: false,
     empty: false,
     connection: false,
-    registered: false,
+    
   });
 
   const handleInputChange = (e) => {
@@ -38,22 +38,14 @@ const Contact = () => {
 
           if (snapshot.exists()) {
 
-            setMessageStatus({ success: false, empty: false, connection: false, registered: true });
 
-            setTimeout(() => {
-              setMessageStatus({ success: false, empty: false, connection: false, registered: false });
-            }, 5000);
+            const existingMessages = snapshot.val().message;
 
-          } else {
+            update(ref(db, 'contactedUsers/' + formData.phone), {
+              message: [formData.message,...existingMessages,],
+            })
 
-            set(ref(db, 'contactedUsers/' + formData.phone), {
-              name: formData.name,
-              email: formData.email,
-              phone: formData.phone,
-              message: formData.message,
-            });
-
-            setMessageStatus({ success: true, empty: false, connection: false, registered: false });
+            setMessageStatus({ success: true, empty: false, connection: false  });
 
             setFormData({
               name: '',
@@ -63,7 +55,29 @@ const Contact = () => {
             });
 
             setTimeout(() => {
-              setMessageStatus({ success: false, empty: false, connection: false, registered: false });
+              setMessageStatus({ success: false, empty: false, connection: false });
+            }, 5000);
+
+          } else {
+
+            set(ref(db, 'contactedUsers/' + formData.phone), {
+              name: formData.name,
+              email: formData.email,
+              phone: formData.phone,
+              message: [formData.message],
+            });
+
+            setMessageStatus({ success: true, empty: false, connection: false });
+
+            setFormData({
+              name: '',
+              email: '',
+              phone: '',
+              message: '',
+            });
+
+            setTimeout(() => {
+              setMessageStatus({ success: false, empty: false, connection: false });
             }, 5000);
 
           }
@@ -76,10 +90,10 @@ const Contact = () => {
 
       else {
 
-        setMessageStatus({ success: false, empty: false, connection: true, registered: false });
+        setMessageStatus({ success: false, empty: false, connection: true });
 
         setTimeout(() => {
-          setMessageStatus({ success: false, empty: false, connection: false, registered: false });
+          setMessageStatus({ success: false, empty: false, connection: false });
         }, 5000);
 
       }
@@ -87,10 +101,10 @@ const Contact = () => {
     } else {
 
 
-      setMessageStatus({ success: false, empty: true, connection: false, registered: false });
+      setMessageStatus({ success: false, empty: true, connection: false });
 
       setTimeout(() => {
-        setMessageStatus({ success: false, empty: false, connection: false, registered: false });
+        setMessageStatus({ success: false, empty: false, connection: false });
       }, 5000);
 
     }
@@ -148,9 +162,6 @@ const Contact = () => {
                 </div>
                 <div className={`connection ${messageStatus.connection ? '' : 'hidden'}`} id="connection">
                   Please try again after Sometime.
-                </div>
-                <div className={`registered ${messageStatus.registered ? '' : 'hidden'}`} id="registered">
-                  We have received a message from this number, please try with a different number.
                 </div>
               </div>
               <div className="btn_box btnn">
