@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { ref, set, getDatabase } from 'firebase/database';
 import { ref as storageRef, uploadBytesResumable, getDownloadURL, getStorage } from 'firebase/storage';
+// import emailjs from '@emailjs/browser';
 import "../styles/JobApplicationForm.css";
 import emailjs from '@emailjs/browser';
 
@@ -19,7 +20,6 @@ const JobApplicationForm = ({ job }) => {
     const [isSubmitted, setIsSubmitted] = useState(false); // State for popup visibility
     const [isLoading, setIsLoading] = useState(false); // State for loading spinner
     const [error, setError] = useState(null); // State for error message
-
     const handleChange = (e) => {
         const { name, value, files } = e.target;
         setFormData({
@@ -56,7 +56,7 @@ const JobApplicationForm = ({ job }) => {
                 },
                 async () => {
                     const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
-
+                    // setEmailResumeURL(downloadURL);
                     // Save form data to Firebase Database
                     const newApplicationRef = ref(db, 'jobApplications/' + job.title.replace(/\s+/g, '_'));
                     await set(newApplicationRef, {
@@ -68,35 +68,10 @@ const JobApplicationForm = ({ job }) => {
                         resumeURL: downloadURL,
                         message
                     });
-
                     // Show success popup
                     setIsSubmitted(true);
                     setIsLoading(false); // Hide spinner
-
-
-                    const templateParams = {
-                        name: formData.name,
-                        email: formData.email,
-                        phone: formData.phone,
-                        address: formData.address,
-                        jobRole: formData.jobRole,
-                        message: formData.message,
-                        resume:downloadURL,
-                    };
-
-
-                   emailjs
-                        .sendForm("service_e4zj7bn", "template_e91nkg7", templateParams, {
-                            publicKey: "9tne6huH6b2t2Jula",
-                        })
-                        .then(
-                            () => {
-                                console.log('SUCCESS!');
-                            },
-                            (error) => {
-                                console.log('FAILED...', error.text);
-                            },
-                        );
+                  
 
 
                     // Clear form fields
@@ -110,9 +85,8 @@ const JobApplicationForm = ({ job }) => {
                         message: ''
                     });
 
-
-
-                    // console.log('Application submitted successfully!');
+                    console.log('Application submitted successfully!');
+                    sendEmail(downloadURL);
                 }
             );
         } catch (error) {
@@ -122,6 +96,31 @@ const JobApplicationForm = ({ job }) => {
             setIsSubmitted(true); // Show popup
         }
     };
+   
+    const form = useRef();
+
+    const sendEmail = (emailResumeURL) => {
+        const templateParams = {
+            name: formData.name,
+            email: formData.email,
+            phone: formData.phone,
+            address: formData.address,
+            jobRole: formData.jobRole,
+            resume: emailResumeURL,
+            message: formData.message
+        };
+    
+        emailjs.send(process.env.REACT_APP_SERVICE_ID, process.env.REACT_APP_TEMPLATE_ID2, templateParams, process.env.REACT_APP_PUBLIC_KEY)
+            .then(
+                () => {
+                    console.log('SUCCESS!');
+                },
+                (error) => {
+                    console.log('FAILED...', error);
+                }
+            );
+    };
+    
 
     return (
         <section className="jobs_section layout_padding bg">
@@ -144,7 +143,7 @@ const JobApplicationForm = ({ job }) => {
                             <h2>JOB <span>APPLICATION FORM</span></h2>
                         </div>
                         <div className="contain">
-                            <form onSubmit={handleSubmit}>
+                            <form onSubmit={handleSubmit} ref={form} >
                                 <div className="form-group">
                                     <label htmlFor="name">Name:</label>
                                     <input type="text" id="name" name="name" value={formData.name} onChange={handleChange} required />
