@@ -95,18 +95,25 @@
     gap: 5px;
   }
 
-  .owl-prev, .owl-next {
+  .owl-prev,
+  .owl-next {
     position: unset !important;
-    /* transform: translateX(1000%) !important; */
+    /* margin-top: -10px; */
+
+    /* transform: none; */
+    /* transform: translateX(1000 %) !important; */
   }
-  .owl-prev{
+
+  .owl-prev {
     transform: translateX(550%) !important;
-  }
-  .owl-prev{
     transform: translateY(950%) !important;
+    margin-left: 25vh;
+    margin-bottom: -70px;
   }
-  .owl-next{
+
+  .owl-next {
     transform: translateX(500%) !important;
+    margin-top: 52px;
   }
 
   .contact_section .form_container {
