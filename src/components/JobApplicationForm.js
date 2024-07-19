@@ -7,6 +7,9 @@ import emailjs from '@emailjs/browser';
 
 
 const JobApplicationForm = ({ job }) => {
+
+    const form = useRef();
+
     const [formData, setFormData] = useState({
         name: '',
         email: '',
@@ -71,8 +74,10 @@ const JobApplicationForm = ({ job }) => {
                     // Show success popup
                     setIsSubmitted(true);
                     setIsLoading(false); // Hide spinner
-                  
 
+                    sendEmail(downloadURL);
+
+                    // formRef.current.reset();
 
                     // Clear form fields
                     setFormData({
@@ -81,9 +86,11 @@ const JobApplicationForm = ({ job }) => {
                         phone: '',
                         address: '',
                         jobRole: '',
-                        resume: null,
+                        resume: "",
                         message: ''
                     });
+
+                    form.current.reset();
 
                     console.log('Application submitted successfully!');
                     sendEmail(downloadURL);
@@ -97,7 +104,7 @@ const JobApplicationForm = ({ job }) => {
         }
     };
    
-    const form = useRef();
+   
 
     const sendEmail = (emailResumeURL) => {
         const templateParams = {
