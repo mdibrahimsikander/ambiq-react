@@ -38,7 +38,7 @@ function Services({ services }) {
 
   return (
     <>
-      <section className="team_section layout_padding">
+      <section className="service_section layout_padding">
         <div className="container">
           <div className="heading_container heading_center">
             <h2>

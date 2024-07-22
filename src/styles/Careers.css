@@ -1,3 +1,26 @@
+.career_section {
+  background: linear-gradient(
+    180deg,
+    rgb(0 95 115 / 54%) 0%,
+    rgba(0, 47, 58, 1) 100%
+  );
+  opacity: 0.95;
+  padding: 50px 0;
+}
+
+.career_section .heading_container {
+  margin-bottom: 45px;
+}
+
+.career_section .heading_container h2 {
+  color: #000000;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.career_section .heading_container h2 span {
+  color: #ffffff;
+}
 .jobs-list-container {
     max-width: 900px;
     margin: 20px auto;
