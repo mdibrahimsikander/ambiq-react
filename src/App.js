@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
 import Slider from "./components/Slider";
@@ -13,22 +13,23 @@ import Contact from "./components/Contact";
 import Careers from "./components/Careers";
 import Footer from "./components/Footer";
 import Job from "./components/JobApplicationForm";
-import activejobdata from "./Data/activeJobsData"
-
-import "./App.css";
+import activejobdata from "./Data/activeJobsData";
 
 function App() {
-
-  // const [loading, setLoading] = useState(true);
-
-  // useEffect(() => {
-  //   const timer = setTimeout(() => {
-  //     setLoading(false);
-  //   }, 3000); // Adjust the time as per your requirement
-
-  //   return () => clearTimeout(timer);
-  // }, []);
-
+const handleScrolltotop=()=>{
+  window.scrollTo({top:0,behavior:'smooth'})
+}
+  useEffect(() => {
+    var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+    (function(){
+      var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+      s1.async = true;
+      s1.src = 'https://embed.tawk.to/66a74fb2becc2fed692c59a2/1i3uoul6j';
+      s1.charset = 'UTF-8';
+      s1.setAttribute('crossorigin', '*');
+      s0.parentNode.insertBefore(s1, s0);
+    })();
+  }, []);
 
   return (
     <>
@@ -54,6 +55,7 @@ function App() {
         ))}
         <Route path="/contact" element={<Contact />} />
       </Routes>
+      <button onClick={handleScrolltotop}/>
       <Footer />
     </>
   );
