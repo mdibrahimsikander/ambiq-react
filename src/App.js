@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import Header from "./components/Header";
 import Slider from "./components/Slider";
 import slideData from './Data/slideData';
@@ -14,10 +14,11 @@ import Careers from "./components/Careers";
 import Footer from "./components/Footer";
 import Job from "./components/JobApplicationForm";
 import activejobdata from "./Data/activeJobsData";
- import './styles/AmbulanceScroll.css';
+import './styles/AmbulanceScroll.css';
 
 function App() {
   const [showScrollButton, setShowScrollButton] = useState(false);
+  const location = useLocation(); // Get the current location
 
   const handleScrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -38,6 +39,11 @@ function App() {
       window.removeEventListener('scroll', checkScrollTop);
     };
   }, [showScrollButton]);
+
+  useEffect(() => {
+    // Scroll to top whenever the route changes
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [location]); // Trigger when location changes
 
   useEffect(() => {
     var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
@@ -76,12 +82,11 @@ function App() {
         <Route path="/contact" element={<Contact />} />
       </Routes>
       {showScrollButton && (
-      <button
-      onClick={handleScrollToTop}
-      className="scroll-to-top-button"
-    >
-    </button>
-    
+        <button
+          onClick={handleScrollToTop}
+          className="scroll-to-top-button"
+        >
+        </button>
       )}
       <Footer />
     </>
