@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
 import Slider from "./components/Slider";
@@ -14,14 +14,34 @@ import Careers from "./components/Careers";
 import Footer from "./components/Footer";
 import Job from "./components/JobApplicationForm";
 import activejobdata from "./Data/activeJobsData";
+ import './styles/AmbulanceScroll.css';
 
 function App() {
-const handleScrolltotop=()=>{
-  window.scrollTo({top:0,behavior:'smooth'})
-}
+  const [showScrollButton, setShowScrollButton] = useState(false);
+
+  const handleScrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  useEffect(() => {
+    const checkScrollTop = () => {
+      if (!showScrollButton && window.pageYOffset > 200) {
+        setShowScrollButton(true);
+      } else if (showScrollButton && window.pageYOffset <= 200) {
+        setShowScrollButton(false);
+      }
+    };
+
+    window.addEventListener('scroll', checkScrollTop);
+
+    return () => {
+      window.removeEventListener('scroll', checkScrollTop);
+    };
+  }, [showScrollButton]);
+
   useEffect(() => {
     var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
-    (function(){
+    (function () {
       var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
       s1.async = true;
       s1.src = 'https://embed.tawk.to/66a74fb2becc2fed692c59a2/1i3uoul6j';
@@ -55,7 +75,14 @@ const handleScrolltotop=()=>{
         ))}
         <Route path="/contact" element={<Contact />} />
       </Routes>
-      <button onClick={handleScrolltotop}/>
+      {showScrollButton && (
+      <button
+      onClick={handleScrollToTop}
+      className="scroll-to-top-button"
+    >
+    </button>
+    
+      )}
       <Footer />
     </>
   );
