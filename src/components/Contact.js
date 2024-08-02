@@ -1,11 +1,16 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import "../styles/Contact.css";
 import contactImg from '../assets/contact-img.png';
-import { database, ref, set, get, child,update } from "../Firebase/Firebase";
+import { database, ref, set, get, child, update } from "../Firebase/Firebase";
 import emailjs from '@emailjs/browser';
 import "../styles/responsive.css";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const Contact = () => {
+  useEffect(() => {
+    AOS.init({ duration: 2000 });
+  }, []);
 
   const [formData, setFormData] = useState({
     name: '',
@@ -18,7 +23,6 @@ const Contact = () => {
     success: false,
     empty: false,
     connection: false,
-
   });
 
   const handleInputChange = (e) => {
@@ -28,26 +32,19 @@ const Contact = () => {
 
   const sendMail = () => {
     if (formData.name && formData.email && formData.phone && formData.message) {
-
       if (database !== null) {
-
         const db = database;
-
         const dbRef = ref(db);
 
         get(child(dbRef, `contactedUsers/${formData.phone}`)).then((snapshot) => {
-
           if (snapshot.exists()) {
-
-
             const existingMessages = snapshot.val().message;
 
             update(ref(db, 'contactedUsers/' + formData.phone), {
-              message: [formData.message, ...existingMessages,],
-            })
+              message: [formData.message, ...existingMessages],
+            });
 
             setMessageStatus({ success: true, empty: false, connection: false });
-
 
             setFormData({
               name: '',
@@ -59,9 +56,7 @@ const Contact = () => {
             setTimeout(() => {
               setMessageStatus({ success: false, empty: false, connection: false });
             }, 5000);
-
           } else {
-
             set(ref(db, 'contactedUsers/' + formData.phone), {
               name: formData.name,
               email: formData.email,
@@ -81,57 +76,46 @@ const Contact = () => {
             setTimeout(() => {
               setMessageStatus({ success: false, empty: false, connection: false });
             }, 5000);
-
           }
         }).catch((error) => {
-          alert("Something has happenend,please try again after sometime");
+          alert("Something has happened, please try again after some time");
         });
-
-
-      }
-
-      else {
-
+      } else {
         setMessageStatus({ success: false, empty: false, connection: true });
 
         setTimeout(() => {
           setMessageStatus({ success: false, empty: false, connection: false });
         }, 5000);
-
       }
-
     } else {
-
-
       setMessageStatus({ success: false, empty: true, connection: false });
 
       setTimeout(() => {
         setMessageStatus({ success: false, empty: false, connection: false });
       }, 5000);
-
     }
   };
 
   const form = useRef();
 
-
   const sendEmail = (e) => {
     e.preventDefault();
 
     emailjs
-      .sendForm(process.env.REACT_APP_SERVICE_ID, process.env.REACT_APP_TEMPLATE_ID, form.current, {
-        publicKey:process.env.REACT_APP_PUBLIC_KEY,
-      })
+      .sendForm(
+        process.env.REACT_APP_SERVICE_ID,
+        process.env.REACT_APP_TEMPLATE_ID,
+        form.current,
+        process.env.REACT_APP_PUBLIC_KEY
+      )
       .then(
         () => {
           console.log('SUCCESS!');
+          sendMail(); // Call sendMail here to store the data in Firebase
         },
         (error) => {
-          console.log("yaha public key hai",process.env.REACT_APP_PUBLIC_KEY);
-          console.log("yaha public key hai",process.env.REACT_APP_SERVICE_ID);
-          console.log("yaha public key hai",process.env.REACT_APP_TEMPLATE_ID);
           console.log('FAILED...', error);
-        },
+        }
       );
   };
 
@@ -172,7 +156,6 @@ const Contact = () => {
                 required
               />
               <textarea
-                type="text"
                 className="message-box"
                 placeholder="Your Message"
                 id="message"
@@ -199,14 +182,13 @@ const Contact = () => {
           </div>
           <div className="col-md-5">
             <div className="img-box">
-              <img src={contactImg} alt="" />
+              <img src={contactImg} alt="Contact" data-aos="fade-left" />
             </div>
           </div>
         </div>
       </div>
     </section>
-  )
+  );
 };
 
 export default Contact;
-
