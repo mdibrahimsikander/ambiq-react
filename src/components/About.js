@@ -53,9 +53,7 @@ const About = () => {
                   </h2>
                 </div>
                 <p>{readMore ? fullText : shortText}</p>
-                <button onClick={() => setReadMore(!readMore)}>
-                  {readMore ? "Read Less" : "Read More"}
-                </button>
+                <button className="custom-btn btn-11" onClick={()=>setReadMore(!readMore)}>{readMore ? "Read Less" : "Read More"}<div className="dot"></div></button>
               </div>
             </div>
           </div>
@@ -64,33 +62,5 @@ const About = () => {
     </div>
   );
 };
-return(
-  <div className="hero_area">
-    <section className="about_section">
-      <div className="container">
-        <div className="row">
-          <div className="col-md-6">
-            <div className="img-box">
-              <img src={aboutImg} alt="About Us" />
-            </div>
-          </div>
-          <div className="col-md-6">
-            <div className="detail-box">
-              <div className="heading_container">
-                <h2>
-                  About <span>US</span>
-                </h2>
-              </div>
-              <p>
-                {readMore ? fullText : shortText}
-              </p>
-              <button className="custom-btn btn-11" onClick={()=>setReadMore(!readMore)}>{readMore ? "Read Less" : "Read More"}<div className="dot"></div></button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  </div>
-)};
 
 export default About;

@@ -3,7 +3,7 @@ import f1 from "../assets/f1.png";
 import f2 from "../assets/f2.png";
 import f3 from "../assets/f3.png";
 import f4 from "../assets/f4.png";
-import FeatureImage from "../assets/feature-side-img.jpg";
+import FeatureImage from "../assets/feature-side-img.png";
 import "../styles/KeyFeatures.css";
 import "../styles/responsive.css";
 import AOS from "aos";
