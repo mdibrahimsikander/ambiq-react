@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import aboutImg from "../assets/about-img.jpg";
 import "../styles/About.css";
+import "../styles/AnimatedButton.css"
 import "../styles/responsive.css";
 
 const About = () => {
@@ -49,7 +50,7 @@ return(
               <p>
                 {readMore ? fullText : shortText}
               </p>
-              <button onClick={()=>setReadMore(!readMore)} >{readMore ? "Read Less" : "Read More"}</button>
+              <button className="custom-btn btn-11" onClick={()=>setReadMore(!readMore)}>{readMore ? "Read Less" : "Read More"}<div className="dot"></div></button>
             </div>
           </div>
         </div>

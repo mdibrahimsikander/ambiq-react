@@ -7,7 +7,8 @@
 }
 
 .about_section {
-  margin-top: 50px; /* Adjust this value as needed */
+  margin-top: 50px;
+  /* Adjust this value as needed */
   margin-bottom: 30px;
 }
 
@@ -21,11 +22,11 @@
   max-width: 100%;
 }
 .heading_container h2 {
-    position: relative;
-    font-weight: bold;
+  position: relative;
+  font-weight: bold;
 }
 .heading_container h2 span {
-    color: #19717d;
+  color: #19717d;
 }
 .about_section .detail-box p {
   color: #999;
@@ -44,4 +45,28 @@
 
 .about_section .detail-box button:hover {
   background-color: #0c0c0c;
+}
+
+
+
+@keyframes shiny-btn1 {
+  0% {
+    -webkit-transform: scale(0) rotate(45deg);
+    opacity: 0;
+  }
+
+  80% {
+    -webkit-transform: scale(0) rotate(45deg);
+    opacity: 0.5;
+  }
+
+  81% {
+    -webkit-transform: scale(4) rotate(45deg);
+    opacity: 1;
+  }
+
+  100% {
+    -webkit-transform: scale(50) rotate(45deg);
+    opacity: 0;
+  }
 }

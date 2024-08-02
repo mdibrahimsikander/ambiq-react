@@ -5,6 +5,7 @@ import dots from "../assets/dots.png";
 import prevIcon from "../assets/prev.png";
 import nextIcon from "../assets/next.png";
 import "../styles/Slider.css";
+import "../styles/AnimatedButton.css"
 import { Link } from "react-router-dom";
 
 const Slider = ({ slides }) => (
@@ -56,8 +57,8 @@ const Slider = ({ slides }) => (
                           <p>{slide.description}</p>
                         </>
                       )}
-
-                      <Link to="/contact">Contact Us</Link>
+                      <button className="custom-btn btn-11">Contact Us<div className="dot"></div></button>
+                      {/* <Link to="/contact">Contact Us</Link> */}
                     </div>
                   </div>
                   <div className="col-md-6">

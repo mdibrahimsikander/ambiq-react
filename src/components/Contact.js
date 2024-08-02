@@ -193,7 +193,7 @@ const Contact = () => {
                 </div>
               </div>
               <div className="btn_box btnn">
-                <button type="submit" value="Send" onClick={sendMail}>SEND</button>
+                <button className="button" type="submit" value="Send" onClick={sendMail}>SEND</button>
               </div>
             </form>
           </div>

@@ -14,6 +14,7 @@ import Careers from "./components/Careers";
 import Footer from "./components/Footer";
 import Job from "./components/JobApplicationForm";
 import activejobdata from "./Data/activeJobsData";
+import SplashScreen from "./components/Splash"
 import './styles/AmbulanceScroll.css';
 
 function App() {
@@ -89,6 +90,7 @@ function App() {
         </button>
       )}
       <Footer />
+      {/* <SplashScreen /> */}
     </>
   );
 }
