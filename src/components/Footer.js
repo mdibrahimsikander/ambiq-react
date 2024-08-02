@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import AmbiQLogo from "../assets/AmbiQ-Logo.png";
 import "../styles/Footer.css";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const Footer = () => {
   const [subscriber, setSubscriber] = useState({ email: "" });
@@ -16,11 +16,9 @@ const Footer = () => {
     const email = { email: subscriber.email };
 
     try {
-      // Fetch existing emails from the database
       const existingEmailsResponse = await fetch('https://ambiq-f1d2a-default-rtdb.firebaseio.com/subscriberRecords.json');
       const existingEmailsData = await existingEmailsResponse.json();
 
-      // Check if the email is already in the database
       const existingEmails = existingEmailsData ? Object.values(existingEmailsData).map(record => record.email) : [];
       if (existingEmails.includes(subscriber.email)) {
         setSubscriber({ email: "" });
@@ -28,7 +26,6 @@ const Footer = () => {
         return;
       }
 
-      // If the email is not in the database, add it
       const res = await fetch('https://ambiq-f1d2a-default-rtdb.firebaseio.com/subscriberRecords.json', {
         method: "POST",
         headers: {
@@ -141,15 +138,49 @@ const Footer = () => {
                 <div className="info_links">
                   <h5>Useful link</h5>
                   <div className="info_links_menu">
-                    <Link className="active" to="/">
+                    <NavLink 
+                      exact 
+                      to="/" 
+                      className={({ isActive }) => (isActive ? "active" : "")}
+                    >
                       Home
-                    </Link>
-                    <Link to="/about">About Us</Link>
-                    <Link to="/keyfeatures">Key Features</Link>
-                    <Link to="/services">Services</Link>
-                    <Link to="/faq">FAQ</Link>
-                    <Link to="/careers">Careers</Link>
-                    <Link to="/contact">Contact us</Link>
+                    </NavLink>
+                    <NavLink 
+                      to="/about" 
+                      className={({ isActive }) => (isActive ? "active" : "")}
+                    >
+                      About Us
+                    </NavLink>
+                    <NavLink 
+                      to="/keyfeatures" 
+                      className={({ isActive }) => (isActive ? "active" : "")}
+                    >
+                      Key Features
+                    </NavLink>
+                    <NavLink 
+                      to="/services" 
+                      className={({ isActive }) => (isActive ? "active" : "")}
+                    >
+                      Services
+                    </NavLink>
+                    <NavLink 
+                      to="/faq" 
+                      className={({ isActive }) => (isActive ? "active" : "")}
+                    >
+                      FAQ
+                    </NavLink>
+                    <NavLink 
+                      to="/careers" 
+                      className={({ isActive }) => (isActive ? "active" : "")}
+                    >
+                      Careers
+                    </NavLink>
+                    <NavLink 
+                      to="/contact" 
+                      className={({ isActive }) => (isActive ? "active" : "")}
+                    >
+                      Contact us
+                    </NavLink>
                   </div>
                 </div>
               </div>

@@ -41,9 +41,8 @@ function App() {
   }, [showScrollButton]);
 
   useEffect(() => {
-    // Scroll to top whenever the route changes
     window.scrollTo({ top: 0, behavior: 'smooth' });
-  }, [location]); // Trigger when location changes
+  }, [location]);
 
   useEffect(() => {
     var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
@@ -94,3 +93,8 @@ function App() {
 }
 
 export default App;
+/*
+git add .
+git commit -m "Ambulance Scroll added"          
+git push
+*/
