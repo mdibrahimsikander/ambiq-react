@@ -96,7 +96,7 @@ const jobs = [
         title: "Social Media Specialist",
         image: Marketing,
         details: "A Social Media Specialist at AMBIQ Health Care Pvt. Ltd., will enhance our online presence and engagement.",
-        JobDetails: "A Social Media Specialist at AMBIQ Health Care Private Limited would likely have a range of responsibilities focused on enhancing the company’s online presence and engagement. Here are some key roles and responsibilities",
+        JobDetails: "A Social Media Specialist at AMBIQ Health Care Private Limited has a range of responsibilities focused on enhancing the company’s online presence and engagement. Here are some key roles and responsibilities:",
         JobResponsibilities: `<ol>
                                 <li>Create and implement social media strategies aligned with business goals.</li>
                                 <li>Identify target audiences and tailor content to engage them effectively.
@@ -118,17 +118,17 @@ Implement new strategies to stay ahead of competitors.</li>
                             </ol>`,
         JobRequirements: ` <ol>
 
-                                <li>Educational Background:
-Bachelor’s Degree: Most positions require a bachelor’s degree in marketing, communications, journalism, or a related field.</li>
-                                <liExperience:
-Social Media Experience: At least 1-3 years of experience in social media management, including planning and managing content</li>
-                                <li>Digital Marketing: A strong background in digital marketing is often preferred</li>
-                                <li>Proficiency in Social Media Platforms: Expertise in platforms like Facebook, Instagram, Twitter, LinkedIn, and others.</li>
-                                <li>Content Creation Skills: Ability to create engaging and visually appealing content.</li>
-                                <li>Analytical Skills: Strong ability to analyze metrics and translate them into actionable insights.</li>
-                                <li>Communication Skills: Excellent written and verbal communication skills.</li>
-                                <li>Creativity: Innovative thinking to create unique and engaging content.</li>
-                                <li>Customer-Oriented: Ability to engage with customers and build relationships.</li>
+                                <li><b>Educational Background:</b>
+Bachelor’s Degree- Most positions require a BCA or bachelor’s degree in marketing, communications, journalism, or a related field.</li>
+                                <li><b>Experience:</b>
+Social Media Experience of at least 1-3 years in social media management, including planning and managing content</li>
+                                <li><b>Digital Marketing:</b> A strong background in digital marketing is often preferred</li>
+                                <li><b>Proficiency in Social Media Platforms:</b> Expertise in platforms like Youtube, Facebook, Instagram, Twitter, LinkedIn, and others.</li>
+                                <li><b>Content Creation Skills:</b> Ability to create engaging and visually appealing content.</li>
+                                <li><b>Analytical Skills:</b> Strong ability to analyze metrics and translate them into actionable insights.</li>
+                                <li><b>Communication Skills:</b> Excellent written and verbal communication skills.</li>
+                                <li><b>Creativity:</b> Innovative thinking to create unique and engaging content.</li>
+                                <li><b>Customer-Oriented:</b> Ability to engage with customers and build relationships.</li>
                             </ol>`,
         openPositions: "1",
         link: "social-media-specialist",

@@ -139,9 +139,9 @@ const JobApplicationForm = ({ job }) => {
                                 <h2 className="padding">DET<span>AILS</span></h2>
                             </div>
                             <p>{job.JobDetails}</p>
-                            <h6>Job Responsibilities:</h6>
+                            <h6>Job Responsibilities-</h6>
                             <div dangerouslySetInnerHTML={{ __html: job.JobResponsibilities }}></div>
-                            <h6>Job Requirements</h6>
+                            <h6>Job Requirements-</h6>
                             <div dangerouslySetInnerHTML={{ __html: job.JobRequirements }}></div>
                         </div> 
                     </div>
