@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Routes, Route, useLocation } from "react-router-dom";
+import { Routes, Route, useLocation, Outlet } from "react-router-dom";
 import Header from "./components/Header";
 import Slider from "./components/Slider";
 import slideData from './Data/slideData';
@@ -60,7 +60,8 @@ function App() {
   return (
     <>
       <Header />
-      <Routes>
+      <Outlet />
+      {/* <Routes>
         <Route path="/" element={
           <>
             <Slider slides={slideData} />
@@ -80,7 +81,7 @@ function App() {
           <Route key={job.link} path={`/careers/${job.link}`} element={<Job job={job} />} />
         ))}
         <Route path="/contact" element={<Contact />} />
-      </Routes>
+      </Routes> */}
       {showScrollButton && (
         <button
           onClick={handleScrollToTop}

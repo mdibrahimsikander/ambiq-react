@@ -1,12 +1,16 @@
 import React, { useState, useRef } from 'react';
 import { ref, set, getDatabase } from 'firebase/database';
 import { ref as storageRef, uploadBytesResumable, getDownloadURL, getStorage } from 'firebase/storage';
+import {useParams} from 'react-router-dom';
 // import emailjs from '@emailjs/browser';
 import "../styles/JobApplicationForm.css";
+import activejobdata from "../Data/activeJobsData";
 import emailjs from '@emailjs/browser';
 
 
-const JobApplicationForm = ({ job }) => {
+const JobApplicationForm = () => {
+    const { jobLink } = useParams();
+    const job = activejobdata.find((job) => job.link === jobLink);
 
     const form = useRef();
 
@@ -128,7 +132,10 @@ const JobApplicationForm = ({ job }) => {
             );
     };
     
-
+    if (!job) {
+        return <div className='NoJob'>Sorry, Job not found</div>;
+    }
+    
     return (
         <section className="jobs_section layout_padding bg">
             <div className="container">

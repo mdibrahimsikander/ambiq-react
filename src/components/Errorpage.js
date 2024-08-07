@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import "../styles/Errorpage.css";
+import { Link } from 'react-router-dom';
 
 export const Errorpage = () => {
     useEffect(() => {
@@ -1790,9 +1791,11 @@ export const Errorpage = () => {
 
                 {/* <h1 className='title'>4&nbsp;&nbsp;4</h1> */}
 
-                <a className='gotohome'>Go to Home</a>
+                <Link className='gotohome' to="/">Go to Home</Link>
             </div>
         </section>
 
     );
 };
+
+export default Errorpage;
