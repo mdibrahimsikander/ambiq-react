@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link,useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import "../styles/Careers.css";
 import jobs from '../Data/activeJobsData.js'; // Adjust the path according to your project structure
 

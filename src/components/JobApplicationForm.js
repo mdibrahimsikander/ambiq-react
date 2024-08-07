@@ -3,6 +3,7 @@ import { ref, set, getDatabase } from 'firebase/database';
 import { ref as storageRef, uploadBytesResumable, getDownloadURL, getStorage } from 'firebase/storage';
 import {useParams} from 'react-router-dom';
 // import emailjs from '@emailjs/browser';
+import CareerNotFound from './CareerNotFound';
 import "../styles/JobApplicationForm.css";
 import activejobdata from "../Data/activeJobsData";
 import emailjs from '@emailjs/browser';
@@ -133,7 +134,7 @@ const JobApplicationForm = () => {
     };
     
     if (!job) {
-        return <div className='NoJob'>Sorry, Job not found</div>;
+        return <CareerNotFound />;
     }
     
     return (

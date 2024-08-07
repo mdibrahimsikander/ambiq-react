@@ -1,20 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { Routes, Route, useLocation, Outlet } from "react-router-dom";
+import { useLocation, Outlet } from "react-router-dom";
 import Header from "./components/Header";
-import Slider from "./components/Slider";
-import slideData from './Data/slideData';
-import About from "./components/About";
-import KeyFeatures from "./components/KeyFeatures";
-import Services from "./components/Services";
-import servicesData from './Data/servicesData';
-import Faq from "./components/Faq";
-import faqData from "./Data/faqData";
-import Contact from "./components/Contact";
-import Careers from "./components/Careers";
 import Footer from "./components/Footer";
-import Job from "./components/JobApplicationForm";
-import activejobdata from "./Data/activeJobsData";
-import SplashScreen from "./components/Splash"
 import './styles/AmbulanceScroll.css';
 
 function App() {
@@ -61,27 +48,6 @@ function App() {
     <>
       <Header />
       <Outlet />
-      {/* <Routes>
-        <Route path="/" element={
-          <>
-            <Slider slides={slideData} />
-            <About />
-            <KeyFeatures />
-            <Services services={servicesData} />
-            <Faq faqs={faqData} />
-            <Contact />
-          </>
-        } />
-        <Route path="/about" element={<About />} />
-        <Route path="/keyfeatures" element={<KeyFeatures />} />
-        <Route path="/services" element={<Services services={servicesData} />} />
-        <Route path="/faq" element={<Faq faqs={faqData} />} />
-        <Route path="/careers" element={<Careers />} />
-        {activejobdata.map((job) => (
-          <Route key={job.link} path={`/careers/${job.link}`} element={<Job job={job} />} />
-        ))}
-        <Route path="/contact" element={<Contact />} />
-      </Routes> */}
       {showScrollButton && (
         <button
           onClick={handleScrollToTop}
@@ -90,14 +56,8 @@ function App() {
         </button>
       )}
       <Footer />
-      {/* <SplashScreen /> */}
     </>
   );
 }
 
 export default App;
-/*
-git add .
-git commit -m "Ambulance Scroll added"          
-git push
-*/
