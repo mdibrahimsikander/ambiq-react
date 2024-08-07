@@ -1,5 +1,4 @@
-/*header section*/
-.hero_area {
+ .hero_area {
   position: relative;
 }
 
@@ -164,6 +163,34 @@
   -webkit-transform: none;
   transform: none;
 }
+ .custom_nav-container .navbar-toggler {
+  outline: none;
+  padding: 0;
+  width: 37px;
+  height: 42px;
+  background-color: transparent;  
+  border: none;  
+  transition: background-color 0.3s;  
+}
+
+ 
+.custom_nav-container .navbar-toggler:hover {
+  background-color: rgba(255, 255, 255, 0.2);  
+}
+
+.custom_nav-container .navbar-toggler span {
+  display: block;
+  width: 35px;
+  height: 4px;
+  background-color: #ffffff; 
+  margin: 7px 0;
+  border-radius: 5px;
+  transition: background-color 0.3s;  
+}
+
+ .custom_nav-container .navbar-toggler:hover span {
+  background-color: white;  
+}
 
 .quote_btn-container {
   display: -webkit-box;
@@ -188,4 +215,4 @@
   color: #252525;
 }
 
-/*end header section*/
+                   

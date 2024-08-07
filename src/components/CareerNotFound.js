@@ -181,8 +181,9 @@ function CareerNotFound() {
                         <h1 className='CNFh1'> Oh no. </h1>
                         <h2 className='CNFh2'> The Job which your are searching for does not exist anymore. </h2>
                         <div id="home" className="CNFbutton">
-                            <h3 className='CNFh3'><Link to='/careers'>CAREERS</Link> </h3>
-                        </div>
+                            <h3 className='CNFh3'>
+                                <Link to='/careers' className='CNFlink'>CAREERS</Link>
+                            </h3>                        </div>
                     </div>
                 </div>
             </div>

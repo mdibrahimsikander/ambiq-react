@@ -4,6 +4,8 @@ import "../styles/Footer.css";
 import { NavLink } from "react-router-dom";
 
 const Footer = () => {
+
+  
   const [subscriber, setSubscriber] = useState({ email: "" });
 
   const postUserEmail = (event) => {

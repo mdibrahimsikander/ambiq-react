@@ -67,22 +67,22 @@
     background-color: #395d6d;
 }
 
+/* Base styles for all screen sizes */
+
 .CNFtext {
     width: 30%;
     text-align: center;
     z-index: 1000;
     position: absolute;
     background-color: white;
-    padding-bottom: 3rem;
-    padding-top: 3rem;
-    padding-left: 3rem;
-    padding-right: 3rem;
+    padding: 3rem;
     left: 0;
     right: 0;
     margin-right: auto;
     margin-left: auto;
     top: 30%;
     box-shadow: 7px 7px 10px #27414c;
+    display: flex;  
     justify-content: space-around;
     align-items: center;
     flex-wrap: wrap;
@@ -119,6 +119,15 @@
     letter-spacing: 0.1rem;
 }
 
+.CNFlink {
+    color: #19717D;  
+    text-decoration: none;
+}
+
+.CNFlink:hover {
+    color: #e1e7e9;
+}
+
 .CNFbutton {
     width: 6rem;
     border: 3px solid #19717D;
@@ -132,6 +141,72 @@
     background-color: #19717D;
     color: white;
 }
+
+
+
+
+
+
+.CNFtext {
+    position: absolute;
+    background-color: white;
+    padding: 3rem;
+    left: 0;
+    right: 0;
+    margin-right: auto;
+    margin-left: auto;
+    top: 30%;
+    box-shadow: 7px 7px 10px #27414c;
+    display: flex;  
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 30%; /* Adjust this percentage to your needs */
+    height: auto; /* Let height be auto to maintain aspect ratio */
+    padding-top: 8%; /* Increase to make the container taller */
+    box-sizing: border-box; /* Include padding in width and height calculations */
+}
+
+/* Responsive Styles */
+@media (max-width: 1200px) {
+    .CNFtext {
+        width: 40%;  
+        padding-top: 55%; /* Adjust for new width */
+        padding: 2rem;  
+    }
+}
+
+@media (max-width: 992px) {
+    .CNFtext {
+        width: 50%;  
+        padding-top: 65%; /* Adjust for new width */
+        padding: 2.5rem;  
+    }
+}
+
+@media (max-width: 768px) {
+    .CNFtext {
+        width: 60%;  
+        padding-top: 75%; /* Adjust for new width */
+        padding: 1rem;  
+    }
+}
+
+@media (max-width: 576px) {
+    .CNFtext {
+        width: 80%;  
+        padding-top: 85%; /* Adjust for new width */
+        padding: 0.5rem;  
+        top: 20%; /* Adjust top position for small screens */
+    }
+}
+
+
+
+
+
+
+
 
 .CNFsvg {
     text-align: center;
