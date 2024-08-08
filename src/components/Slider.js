@@ -57,6 +57,8 @@ const Slider = ({ slides }) => (
                           <p>{slide.description}</p>
                         </>
                       )}
+                      <button className="custom-btn btn-11"><Link to="/contact">Contact Us</Link><div className="dot"></div></button>
+                      {/* <Link to="/contact">Contact Us</Link> */}
                       <button className="custom-btn btn-11">
                         <Link to="/contact" className="button-text">Contact Us</Link>
                         <div className="dot"></div> 

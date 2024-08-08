@@ -15,15 +15,16 @@ import Careers from "./components/Careers";
 import JobApplicationForm from "./components/JobApplicationForm";
 import ErrorPage from './components/Errorpage'
 
+
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />,
+    element: <App/>,
     errorElement: <ErrorPage />,
     children: [
       { 
         path: "/", 
-        element: <Home /> 
+        element: <Home/> 
       },
       {
         path:"/about",
