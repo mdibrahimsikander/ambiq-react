@@ -9,9 +9,12 @@ import Faq from "./Faq";
 import faqData from "../Data/faqData";
 import Contact from "./Contact";
 
+
+
 function Home() {
   return (
     <>
+      
       <Slider slides={slideData} />
       <About />
       <KeyFeatures />

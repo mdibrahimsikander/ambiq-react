@@ -1,56 +1,203 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap');
-.splash-screen {
-  /* position: relative; */
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-.pulse-path {
-  fill: none;
-  stroke: red;
-  width: 100%;
-  stroke-width: 4;
-  stroke-linecap: round;
-  animation: pulse 2s infinite;
+.loader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: linear-gradient(#9ae4ee,#fff);
+    height: 100vh;
+    animation: up 2s 3s ease-in;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    z-index: 10000000;
+    /* filter: blur(1px); */
+    overflow: hidden;
+
+}
+
+.box#boxxx {
+    position: relative;
+    max-height: 300px;
+    width: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    -webkit-box-reflect: below -60px linear-gradient(transparent, rgba(0, 0, 0, 0.401));
+}
+
+.gif {
+    width: 100px;
+    height: 100px;
+    background-image: url(../assets/ambulanceGIF.gif);
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: absolute;
+    top: -13%;
+    left: -30%;
+    /* transform: translateX(-100%); */
+    animation: slide 3s 1s forwards;
+    /* left: -100%; Start off-screen to the left */
+    /* visibility: hidden; */
+    /* animation-delay: 10s; */
+}
+
+.gif.hide {
+    display: none;
+}
+
+@keyframes slide {
+    0% {
+        /* transform: translateX(-100%); */
+        left: -100%;
+    }
+
+    100% {
+        /* transform: translateX(340%); */
+        left: 76%;
+    }
 }
 
 
+span.char {
 
-@keyframes pulse {
-  0% {
-    stroke-dasharray: 0, 400;
-    opacity: 0;
-  }
-  50% {
-    stroke-dasharray: 200, 500;
-    opacity: 1;
-  }
-  100% {
-    stroke-dasharray: 400, 400;
-    opacity: 0;
-  }
+    display: inline-block;
+    font-size: 8rem;
+    font-weight: 800;
+    color: #19717d;
+    text-shadow: 0px 2px black;
+    animation: waviy 1.5s 1;
+    text-shadow: 0px 4px black;
+    
 }
 
-.text {
-  fill: red;
-  font-family: 'Roboto', sans-serif;
-  font-weight: 500;
-  font-size: 30px;
-  text-anchor: middle;
-  /* dominant-baseline: middle; */
-  opacity: 0;
-  animation: fadeIn 3s infinite;
+.char:nth-child(2) {
+
+
+    animation-delay: .1s
 }
 
-@keyframes fadeIn {
-  0%, 50%, 100% {
-    opacity: 0;
-  }
-  25% {
-    opacity: 1;
-  }
+.char:nth-child(3) {
+
+
+    animation-delay: .2s;
+
+}
+
+.char:nth-child(4) {
+
+
+    animation-delay: .3s;
+
+}
+
+.char:nth-child(5) {
+
+
+    animation-delay: .4s;
+
+}
+
+.char:nth-child(6) {
+
+    animation-delay: .5s;
+
+}
+
+@keyframes waviy {
+
+    0%,
+    40%,
+    100% {
+        transform: translateY(0)
+    }
+
+    20% {
+        transform: translateY(-40px)
+    }
+}
+
+
+.hide {
+    display: none;
+}
+
+@keyframes up {
+    0% {
+        height: 100vh;
+    }
+
+    100% {
+        height: 0;
+    }
+}
+
+@media (max-width : 448px){
+
+    span.char{
+        font-size: 5rem;
+    }
+    .gif{
+        width: 70px;
+        height: 70px;
+        top: -5%;
+    }
+    .box {
+        height: 150px;
+        -webkit-box-reflect: below -60px linear-gradient(transparent, rgba(0, 0, 0, 0.401));
+    } 
+}
+
+@media (max-width : 300px){
+
+    span.char{
+        font-size: 3rem;
+        text-shadow: 0px 2px black;
+    }
+    .gif{
+        width: 50px;
+        height: 50px;
+        top: 12%;
+    }
+    .box {
+        height: 150px;
+        -webkit-box-reflect: below -98px linear-gradient(transparent, rgba(0, 0, 0, 0.401));
+    } 
+
+    @keyframes slide {
+
+        100% {
+           
+            left: 70%;
+        }
+    }
+}
+
+@media (max-width : 175px){
+
+    span.char{
+        font-size: 2rem;
+    }
+    .gif{
+        width: 30px;
+        height: 30px;
+        top: 26%;
+    }
+    .box {
+        height: 150px;
+        -webkit-box-reflect: below -114px linear-gradient(transparent, rgba(0, 0, 0, 0.401));
+    } 
+
+   
+}
+
+
+.no-scroll {
+    overflow: hidden;
 }
