@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Slider from "./Slider";
 import slideData from "../Data/slideData";
 import About from "./About";
@@ -12,9 +12,20 @@ import Contact from "./Contact";
 
 
 function Home() {
+
+  useEffect(() => {
+    setTimeout(() => {
+
+      document.body.classList.remove('no-scroll');
+
+    }, 5100);
+    // Ensure scrolling is re-enabled on unmount
+  }, []);
+
+
   return (
     <>
-      
+
       <Slider slides={slideData} />
       <About />
       <KeyFeatures />
