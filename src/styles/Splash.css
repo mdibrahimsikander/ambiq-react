@@ -148,10 +148,18 @@ span.char {
         height: 70px;
         top: -5%;
     }
-    .box {
+    .box#boxxx {
         height: 150px;
         -webkit-box-reflect: below -60px linear-gradient(transparent, rgba(0, 0, 0, 0.401));
     } 
+
+    @keyframes slide {
+
+        100% {
+           
+            left: 69%;
+        }
+    }
 }
 
 @media (max-width : 300px){
@@ -165,7 +173,7 @@ span.char {
         height: 50px;
         top: 12%;
     }
-    .box {
+    .box#boxxx {
         height: 150px;
         -webkit-box-reflect: below -98px linear-gradient(transparent, rgba(0, 0, 0, 0.401));
     } 
@@ -189,7 +197,7 @@ span.char {
         height: 30px;
         top: 26%;
     }
-    .box {
+    .box#boxxx {
         height: 150px;
         -webkit-box-reflect: below -114px linear-gradient(transparent, rgba(0, 0, 0, 0.401));
     } 
