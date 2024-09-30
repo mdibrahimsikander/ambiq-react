@@ -8,7 +8,9 @@ import servicesData from "../Data/servicesData";
 import Faq from "./Faq";
 import faqData from "../Data/faqData";
 import Contact from "./Contact";
-
+import Slider1 from "./slider1";
+import BookingSection from "./BookingSection";
+ 
 
 
 function Home() {
@@ -24,15 +26,16 @@ function Home() {
 
 
   return (
-    <>
+<>
+  <Slider1/>
+  <BookingSection/>
+  <About />
+  <KeyFeatures />
+  <Services services={servicesData} />
+  <Faq faqs={faqData} />
+  <Contact />
+</>
 
-      <Slider slides={slideData} />
-      <About />
-      <KeyFeatures />
-      <Services services={servicesData} />
-      <Faq faqs={faqData} />
-      <Contact />
-    </>
   );
 }
 

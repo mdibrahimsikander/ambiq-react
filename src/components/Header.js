@@ -1,8 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import logo from "../assets/AmbiQ-Logo.png";
+import logo from "../assets/AmbiQ Logo_White.png";
+import flag from "../assets/flag.png";
 import "../styles/Header.css";
 import "../styles/responsive.css";
+import { TfiAndroid } from "react-icons/tfi";
+import { FaApple } from "react-icons/fa";
+
 
 
 const Header = () => (
@@ -24,7 +28,27 @@ const Header = () => (
                 <i className="bi bi-geo-alt-fill" aria-hidden="true"></i>
                 <span>Kolkata</span>
               </a>
+
+              <div className="rightside">
+                <a href="tel:+917044542223">
+                  <span>Download</span>
+
+                  <FaApple aria-hidden="true" style={{ marginLeft: '10px', fontSize: '24px', }} />
+
+                  <TfiAndroid aria-hidden="true" style={{ marginLeft: '10px', fontSize: '23px', }} />
+                </a>
+                <a href="mailto:support@ambiq.in">
+                  <span>Emergency:-+91 70445 42223</span>
+                </a>
+                <a href="mailto:support@ambiq.in">
+                  <img src={flag} alt="Description of the image" className="email-image" />
+                </a>
+
+
+              </div>
+
             </div>
+
           </div>
         </div>
         <div className="header_bottom">
@@ -83,6 +107,9 @@ const Header = () => (
                     <Link className="nav-link" to="/contact">
                       Contact Us
                     </Link>
+                  </li>
+                  <li className="nav-item">
+                    <button className="custom-button">Blood Bank Support</button>
                   </li>
                 </ul>
               </div>

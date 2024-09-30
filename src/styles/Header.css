@@ -1,4 +1,4 @@
- .hero_area {
+.hero_area {
   position: relative;
 }
 
@@ -12,6 +12,7 @@
 
 .header_section .header_top {
   padding: 15px 0;
+  background-color: #ED531F;
 }
 
 .header_section .header_top .contact_nav {
@@ -20,20 +21,38 @@
   display: flex;
 }
 
+.header_section .header_top .contact_nav .rightside {
+  margin-left: auto;
+  text-align: right;
+}
+
 .header_section .header_top .contact_nav a {
   margin-right: 25px;
-  color: #555555;
+  color: white;
+  /* Changed to black */
   text-decoration: none;
 }
 
 .header_section .header_top .contact_nav a i {
-  color: #19717d;
+  color: white;
+  /* Changed to black */
   font-size: 14px;
   margin-right: 5px;
 }
 
+.email-image {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  top: 6px;
+}
+
 .header_section .header_bottom {
-  background-color: #19717d;
+  background-color: transparent;
+}
+
+.header_section .header_bottom.with-bg {
+  background-color: white;
 }
 
 .header_section .header_bottom .container-fluid {
@@ -42,8 +61,9 @@
 }
 
 .navbar-brand {
-  background-color: #ffffff;
+  background-color: transparent;
   padding: 15px 35px;
+  color: white;
 }
 
 .navbar-brand img {
@@ -51,31 +71,52 @@
 }
 
 .custom_nav-container {
+  /* background-color: aqua; */
   padding: 0;
+  padding-left: 50px;
+}
+
+.custom-button {
+  position: absolute;
+  background-color: #ED531F;
+  font-size: 13px;
+  border: none;
+  border-radius: 3px;
+  padding: 10px 25px;  
+  margin-top: -8px;  
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+   right: 120px;
+  color: white;
+  flex-grow: 0; /* Prevents button from growing */
+}
+
+
+/* .custom-button:hover {
+ }
+
+.custom-button:focus {
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+} */
+
+
+/* .custom_nav-container .navbar-nav{
+  margin-left: 200px;
+  } */
+.custom_nav-container .navbar-nav {
+  margin-left: 150px;
+   margin-top: 10px;
 }
 
 .custom_nav-container .navbar-nav .nav-item .nav-link {
-  padding: 3px 15px;
-  margin: 10px 15px;
-  color: #ffffff;
-  text-align: center;
+  padding: 0px 2px 0px 12px;
+  margin: 0px 1px 1px 12px;
+  color: white;
+  text-align: right;
+   font-size: 14px;
   text-transform: uppercase;
-}
-
-.custom_nav-container .navbar-nav .nav-item:hover .nav-link {
-  color: #252525;
-}
-
-.custom_nav-container .nav_search-btn {
-  width: 35px;
-  height: 35px;
-  padding: 0;
-  border: none;
-  color: #ffffff;
-}
-
-.custom_nav-container .nav_search-btn:hover {
-  color: #252525;
+  font-weight: bold;
 }
 
 .custom_nav-container .navbar-toggler {
@@ -111,7 +152,7 @@
   left: 0;
   height: 100%;
   width: 100%;
-  background-color: #ffffff;
+  background-color: black;
   top: -10px;
   border-radius: 5px;
   -webkit-transition: all 0.3s;
@@ -163,33 +204,53 @@
   -webkit-transform: none;
   transform: none;
 }
- .custom_nav-container .navbar-toggler {
+
+.custom_nav-container .navbar-nav .nav-item:hover .nav-link {
+  color: black;
+  /* Changed to black */
+}
+
+.custom_nav-container .nav_search-btn {
+  width: 35px;
+  height: 35px;
+  padding: 0;
+  border: none;
+  color: black;
+  /* Changed to black */
+}
+
+.custom_nav-container .nav_search-btn:hover {
+  color: black;
+  /* Changed to black */
+}
+
+.custom_nav-container .navbar-toggler {
   outline: none;
   padding: 0;
   width: 37px;
   height: 42px;
-  background-color: transparent;  
-  border: none;  
-  transition: background-color 0.3s;  
+  border: none;
+  transition: background-color 0.3s;
 }
 
- 
 .custom_nav-container .navbar-toggler:hover {
-  background-color: rgba(255, 255, 255, 0.2);  
+  background-color: rgba(255, 255, 255, 0.2);
 }
 
 .custom_nav-container .navbar-toggler span {
   display: block;
   width: 35px;
   height: 4px;
-  background-color: #ffffff; 
+  background-color: black;
+  /* Changed to black */
   margin: 7px 0;
   border-radius: 5px;
-  transition: background-color 0.3s;  
+  transition: background-color 0.3s;
 }
 
- .custom_nav-container .navbar-toggler:hover span {
-  background-color: white;  
+.custom_nav-container .navbar-toggler:hover span {
+  background-color: black;
+  /* Changed to black */
 }
 
 .quote_btn-container {
@@ -202,7 +263,8 @@
 }
 
 .quote_btn-container a {
-  color: #ffffff;
+  color: black;
+  /* Changed to black */
   margin-right: 25px;
   text-transform: uppercase;
 }
@@ -214,5 +276,3 @@
 .quote_btn-container a:hover {
   color: #252525;
 }
-
-                   

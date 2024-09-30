@@ -4,6 +4,7 @@ import { useLocation, Outlet } from "react-router-dom";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import './styles/AmbulanceScroll.css';
+import Slider1 from "./components/slider1";
 
 
 const Splash = () => {
@@ -130,6 +131,7 @@ const Splash = () => {
             <div class="page">
                 <Header />
                 <Outlet />
+                
                 {showScrollButton && (
                     <button
                         onClick={handleScrollToTop}
@@ -137,6 +139,7 @@ const Splash = () => {
                     >
                     </button>
                 )}
+                  
                 <Footer />
             </div>
         </>
