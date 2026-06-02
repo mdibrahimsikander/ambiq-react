@@ -15,7 +15,7 @@ const About = () => {
 
   const fullText = `AmbiQ is a revolutionary online ambulance booking application
                     that operates on a model similar to popular ride-hailing
-                    services like Ola and Uber. With AmbiQ, individuals can
+                    services like. With AmbiQ, individuals can
                     seamlessly book ambulances round the clock, ensuring prompt
                     assistance at critical moments, all at an affordable price
                     point. The app offers real-time tracking of the ambulance,
@@ -30,7 +30,7 @@ const About = () => {
 
   const shortText = `AmbiQ is a revolutionary online ambulance booking application
                     that operates on a model similar to popular ride-hailing
-                    services like Ola and Uber. With AmbiQ, individuals can
+                    services. With AmbiQ, individuals can
                     seamlessly book ambulances round the clock, ensuring prompt
                     assistance at critical moments, all at an affordable price
                     point.`;
