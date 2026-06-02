@@ -69,9 +69,9 @@ const Footer = () => {
         <div className="container">
           <div className="info_top">
             <div className="info_logo">
-              <a href="#">
+              <NavLink to="/">
                 <img src={AmbiQLogo} alt="AmbiQ Logo" />
-              </a>
+              </NavLink>
             </div>
             <div className="info_form">
               <form method="POST" name="google-sheet" onSubmit={submitData}>
@@ -93,7 +93,11 @@ const Footer = () => {
               <div className="col-md-6 col-lg-3">
                 <h5>Address</h5>
                 <div className="info_contact">
-                  <a>
+                  <a
+                    href="https://www.google.com/maps/search/?api=1&query=Kolkata"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
                     <i className="fa fa-map-marker" aria-hidden="true" />
                     <span>Kolkata</span>
                   </a>
@@ -114,10 +118,10 @@ const Footer = () => {
                   >
                     <i className="fa fa-facebook" aria-hidden="true" />
                   </a>
-                  <a href="#" target="_blank">
+                  <a href="https://ambiq.in/" target="_blank" rel="noreferrer">
                     <i className="fa fa-twitter" aria-hidden="true" />
                   </a>
-                  <a href="#" target="_blank">
+                  <a href="https://ambiq.in/" target="_blank" rel="noreferrer">
                     <i className="fa fa-linkedin" aria-hidden="true" />
                   </a>
                   <a

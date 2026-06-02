@@ -41,7 +41,7 @@ const Header = () => (
                   <span>Emergency:-+91 70445 42223</span>
                 </a>
                 <a href="mailto:support@ambiq.in">
-                  <img src={flag} alt="Description of the image" className="email-image" />
+                  <img src={flag} alt="India flag" className="email-image" />
                 </a>
 
 

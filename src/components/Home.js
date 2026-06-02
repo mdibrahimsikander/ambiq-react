@@ -1,6 +1,4 @@
 import React, { useEffect } from "react";
-import Slider from "./Slider";
-import slideData from "../Data/slideData";
 import About from "./About";
 import KeyFeatures from "./KeyFeatures";
 import Services from "./Services";

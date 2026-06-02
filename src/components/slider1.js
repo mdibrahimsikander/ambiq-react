@@ -3,10 +3,11 @@ import slider2 from '../assets/sliderBanner2.jpg';
 import slider3 from '../assets/ambiq_bnr1.jpg';
 import "../styles/slider1.css";
 
+const slides = [slider2, slider3];
+
 function Slider1() {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [fade, setFade] = useState(true);
-    const slides = [slider2, slider3];
 
     useEffect(() => {
         const totalSlides = slides.length;
@@ -20,7 +21,7 @@ function Slider1() {
         }, 5000);
 
         return () => clearInterval(sliderInterval);
-    }, [slides]);
+    }, []);
 
     const handleNext = () => {
         setFade(false);

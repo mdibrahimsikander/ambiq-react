@@ -4,7 +4,6 @@ import { useLocation, Outlet } from "react-router-dom";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import './styles/AmbulanceScroll.css';
-import Slider1 from "./components/slider1";
 
 
 const Splash = () => {
@@ -49,7 +48,8 @@ const Splash = () => {
     }, [location]);
 
     useEffect(() => {
-        var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+        window.Tawk_API = window.Tawk_API || {};
+        window.Tawk_LoadStart = new Date();
 
         setTimeout(()=>{
 
@@ -85,15 +85,15 @@ const Splash = () => {
     }, [isAppLoaded]);
 
     useEffect(() => {
-        // Simulate app loading
-        window.addEventListener('load', () => {
+        const handleLoad = () => {
             setIsAppLoaded(true);
-        });
+        };
+
+        // Simulate app loading
+        window.addEventListener('load', handleLoad);
 
         return () => {
-            window.removeEventListener('load', () => {
-                setIsAppLoaded(true);
-            });
+            window.removeEventListener('load', handleLoad);
         };
     }, []);
 
@@ -101,24 +101,23 @@ const Splash = () => {
     useEffect(() => {
 
         const loader = document.querySelector('.loader');
-        const box = document.querySelector('.box');
         const gif = document.querySelector('.gif');
 
         setTimeout(() => {
-            gif.classList.add('play');
+            gif?.classList.add('play');
 
         }, 1000);
 
         setTimeout(() => {
-            loader.classList.add('hide')
+            loader?.classList.add('hide')
         }, 5000);
 
-    });
+    }, []);
 
 
     return (
         <>
-            <div class="loader">
+            <div className="loader">
                 <div className='box' id="boxxx">
                     <div className='gif'></div>
                     <span className="char">A</span>
@@ -128,7 +127,7 @@ const Splash = () => {
                     <span className="char">Q</span>
                 </div>
             </div>
-            <div class="page">
+            <div className="page">
                 <Header />
                 <Outlet />
                 
